@@ -1,20 +1,28 @@
-import { error, redirect } from "@sveltejs/kit";
+import { error, fail, redirect } from '@sveltejs/kit';
+import { registerUserSchema } from '$lib/schemas';
+import { validateData } from '$lib/utils';
 
 export const actions = {
-  register: async ({ locals, request }) => {
-    const body = Object.fromEntries(await request.formData());
+	register: async ({ locals, request }) => {
+		const { formData, errors } = await validateData(await request.formData(), registerUserSchema);
 
-    let username = body.username;
+		if (errors) {
+			return fail(400, {
+				data: formData,
+				errors: errors.fieldErrors
+			});
+		}
 
-    try {
-      await locals.pb.collection("users").create({ username, ...body });
-      await locals.pb.collection("users").requestVerification(body.email);
-    } catch (err) {
-      console.error(err);
+		let username = formData.username;
 
-      throw error(500, "Something went wrong. Please try again later.");
-    }
+		try {
+			await locals.pb.collection('users').create({ username, ...formData });
+			await locals.pb.collection('users').requestVerification(formData.email);
+		} catch (err) {
+			console.log('Error: ', err);
+			throw error(500, 'Something went wrong');
+		}
 
-    throw redirect(303, "/login");
-  },
+		throw redirect(303, '/login');
+	}
 };
