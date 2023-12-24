@@ -1,6 +1,6 @@
 https://github.com/huntabyte/showcase
 
-add smtp to pocketbase
+add smtp to pocketbase (https://app.brevo.com/)
 
 1. Clone the repository:
 
