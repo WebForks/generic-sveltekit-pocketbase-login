@@ -8,7 +8,9 @@
 		Login to your account
 	</h2>
 	<p class="text-center mt-1">
-		Or <a href="/register" class="text-primary font-medium hover:cursor-pointer hover:underline"
+		Or <a
+			href="/register"
+			class="text-primary font-medium underline hover:cursor-pointer hover:font-semibold hover:text-white"
 			>register</a
 		> if you don't already have an account.
 	</p>

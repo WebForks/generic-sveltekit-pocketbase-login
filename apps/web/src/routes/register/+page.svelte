@@ -8,12 +8,19 @@
 		Register for an account
 	</h2>
 	<p class="text-center mt-1">
-		Or <a href="/login" class="text-primary font-medium hover:cursor-pointer hover:underline"
+		Or <a
+			href="/login"
+			class="text-primary font-medium underline hover:cursor-pointer hover:font-semibold hover:text-white"
 			>sign in</a
 		> if you already have an account.
 	</p>
 	<form action="?/register" method="POST" class="flex flex-col items-center space-y-2 w-full pt-4">
-		<Input id="username" label="Username" value={form?.data?.username} errors={form?.errors?.username} />
+		<Input
+			id="username"
+			label="Username"
+			value={form?.data?.username}
+			errors={form?.errors?.username}
+		/>
 		<Input
 			type="email"
 			id="email"
